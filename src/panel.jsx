@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { FileList } from "./FileList";
-import { Recieverid } from "./Recieverid";
+import { Recieverid } from "./RecieverID";
+
 
 export function Uploader({ peerObj }) {
 
@@ -31,7 +32,7 @@ export function Uploader({ peerObj }) {
             <input className="file-input" type="file" ref={inputRef} onChange={getFiles} multiple={true} />
             <div className="uploader-wrapper">
                 <div className="top-bar">
-                    <Recieverid peerObj={peerObj} files={files} />
+                    <Recieverid peerObj={peerObj} files={files}/>
                     <button className="btn-files" onClick={() => clear()}>Clear Files</button>
                     <button className="btn-files" onClick={() => openFiles()}>Choose Files</button>
                 </div>
