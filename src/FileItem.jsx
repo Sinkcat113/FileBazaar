@@ -1,4 +1,4 @@
-import fileIcon from "./assets/file_list_icon.png"
+import fileIcon from "./assets/fileListIcon.png"
 
 export function FileItem({ fileData, id, downloadable, type }) {
     if (downloadable) {

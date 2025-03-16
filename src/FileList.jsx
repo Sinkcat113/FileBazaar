@@ -1,4 +1,4 @@
-import fileIcon from "./assets/file_icon.png"
+import fileIcon from "./assets/fileIcon.png"
 import { FileItem } from "./FileItem"
 
 export function FileList({ files, recieve }) {
