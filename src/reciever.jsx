@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { FileList } from "./FileList";
-import JSZip from "jszip";
 
 export function Reciever({ peerObj }) {
 

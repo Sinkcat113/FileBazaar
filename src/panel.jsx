@@ -40,6 +40,3 @@ export function Uploader({ peerObj }) {
         </>
     )
 }
-
-
-
