@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import "./style.css"
 import Peer from "peerjs";
 
-import { Uploader } from "./panel";
-import { Reciever } from "./reciever";
+import { Uploader } from "./Panel";
+import { Reciever } from "./Reciever";
 import { Id } from "./Session";
 
 let peer = new Peer();
