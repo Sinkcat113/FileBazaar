@@ -1,0 +1,327 @@
+body {
+    background-color: rgb(14, 14, 14);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+:root {
+    background-color: rgb(14, 14, 14);
+    color: white;
+    font-family: sans-serif;
+}
+
+.id-container {
+    padding: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.id-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.label-session {
+    font-weight: 800;
+    margin-right: 12px;
+}
+
+.id-textbox {
+    padding: 7px;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.288);
+    border-radius: 8px;
+    color: white;
+    font-weight: 800;
+    width: 310px;
+    outline: none;
+    transition: 0.12s;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right-style: none;
+}
+
+.id-textbox:focus {
+    background-color: rgb(31, 31, 31);
+}
+
+.id-textbox-long {
+    padding: 7px;
+    background-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.288);
+    border-radius: 8px;
+    color: white;
+    font-weight: 800;
+    outline: none;
+    transition: 0.12s;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right-style: none;
+    width: 300px;
+}
+
+.id-textbox-long:focus {
+    background-color: rgb(31, 31, 31);
+}
+
+.btn-copy {
+    padding: 7px;
+    cursor: pointer;
+    transition: 0.12s;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 800;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-style: solid;
+    border-color: white;
+    border-left-style: none;
+    background-color: white;
+}
+
+.btn-copy:hover {
+    background-color: rgb(218, 218, 218);
+}
+
+.btn-copy:active {
+    background-color: rgb(189, 189, 189);
+}
+
+.btn-copied {
+    padding: 7px;
+    cursor: pointer;
+    transition: 0.12s;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 800;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left-style: none;
+    background-color: rgb(60, 170, 60);
+    border-color: rgb(79, 214, 79);
+    color: white;
+}
+
+.panel-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    padding-top: 10px;
+}
+
+.uploader-wrapper {
+    width: 100%;
+    height: 500px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.251);
+    border-radius: 12px;
+    transition: 0.12s;
+    overflow-y: scroll;
+}
+
+.reciever-wrapper {
+    width: 100%;
+    height: 500px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.251);
+    border-radius: 12px;
+    overflow-y: scroll;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(21, 21, 21);
+    padding: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: rgba(255, 255, 255, 0.131);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: sticky;
+}
+
+.top-bar-recieve {
+    display: flex;
+    background-color: rgb(21, 21, 21);
+    padding: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: rgba(255, 255, 255, 0.131);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: sticky;
+    overflow: hidden;
+}
+
+
+.btn-send {
+    padding: 7px;
+    cursor: pointer;
+    transition: 0.12s;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 800;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-style: solid;
+    border-color: white;
+    border-left-style: none;
+    background-color: white;
+}
+
+.btn-send:hover {
+    background-color: rgb(218, 218, 218);
+}
+
+.btn-send:active {
+    background-color: rgb(189, 189, 189);
+}
+
+.file-input {
+    display: none;
+}
+
+.no-files {
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: rgb(55, 55, 55);
+}
+
+.no-files-image {
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.file-row {
+    display: flex;
+    padding: 7px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.208);
+    border-bottom-style: solid;
+    gap: 12px;
+    cursor: pointer;
+    transition: 0.12s;
+}
+
+.file-row:hover {
+    background-color: rgb(21, 21, 21);
+}
+
+.file-row-download {
+    display: flex;
+    padding: 7px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.208);
+    border-bottom-style: solid;
+    gap: 12px;
+    cursor: pointer;
+    transition: 0.12s;
+}
+
+.file-row-download:hover {
+    background-color: rgb(21, 21, 21);
+}
+
+.file-download-root {
+    display: flex;
+    margin: 4px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.file-list-root {
+    overflow: scroll;
+}
+
+.btn-files {
+    margin-left: 12px;
+    transition: 0.12s;
+    font-family: sans-serif;
+    font-weight: 800;
+    width: 190px;
+    cursor: pointer;
+    border-style: none;
+    border-radius: 7px;
+    background-color: white;
+}
+
+.btn-files:hover {
+    background-color: rgb(202, 202, 202);
+}
+
+.btn-files:active {
+    background-color: rgb(162, 162, 162);
+}
+
+.file-name {
+    margin: 4px;
+    color: rgb(255, 255, 255);
+}
+
+.top-bar-header {
+    margin: 6.78px;
+    width: 500px;
+}
+
+form {
+    display: flex;
+}
+
+.btn-download {
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: 800;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
+    transition: 0.12s;
+    border-style: none;
+}
+
+.btn-download:hover {
+    background-color: rgb(214, 214, 214);
+}
+
+.btn-download:active {
+    background-color: rgb(179, 179, 179);
+}
