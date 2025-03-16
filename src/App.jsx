@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import "./style.css"
 import Peer from "peerjs";
-import { Id } from "./id";
+
 import { Uploader } from "./panel";
 import { Reciever } from "./reciever";
+import { Id } from "./Session";
 
 let peer = new Peer();
 
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <>
-      <Id peerObj={peer} />
+      <Id peerObj={peer}/>
       <div className="panel-container">
         <Uploader peerObj={peer} />
         <Reciever peerObj={peer} />
