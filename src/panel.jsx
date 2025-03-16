@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import { Recieverid } from "./RecieverID"
 import { FileList } from "./FileList";
 
-
-
 export function Uploader({ peerObj }) {
 
     const inputRef = useRef(null)
