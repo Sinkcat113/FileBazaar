@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { FileList } from "./FileList";
+import { FileList } from "./fileList";
 
 export function Reciever({ peerObj }) {
 

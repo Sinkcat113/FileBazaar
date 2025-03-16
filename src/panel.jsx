@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import { FileList } from "./FileList";
-import { Recieverid } from "./RecieverID";
+import { FileList } from "./fileList";
+import { Recieverid } from "./recieverID";
 
 
 export function Uploader({ peerObj }) {
