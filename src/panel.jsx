@@ -17,6 +17,17 @@ export function Uploader({ peerObj }) {
         setFiles([])
     }
 
+    function getDroppedFiles(e) {
+        e.preventDefault()
+        const selectedFiles = Array.from(e.dataTransfer.files)
+
+        selectedFiles.forEach(file => {
+            setFiles(currentFiles => {
+                return [...currentFiles, {fileData: file, id: crypto.randomUUID()}]
+            })
+        })
+    }
+
     function getFiles(e) {
         const selectedFiles = Array.from(e.target.files)
 
@@ -27,10 +38,14 @@ export function Uploader({ peerObj }) {
         })
     }
 
+    function handleDragOver(e) {
+        e.preventDefault()
+    }
+
     return (
         <>
-            <input className="file-input" type="file" ref={inputRef} onChange={getFiles} multiple={true} />
-            <div className="uploader-wrapper">
+            <input className="file-input" type="file" ref={inputRef} multiple={true} />
+            <div className="uploader-wrapper" onDragOver={handleDragOver} onDrop={getDroppedFiles}>
                 <div className="top-bar">
                     <Recieverid peerObj={peerObj} files={files}/>
                     <button className="btn-files" onClick={() => clear()}>Clear Files</button>
