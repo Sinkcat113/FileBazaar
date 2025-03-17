@@ -29,7 +29,7 @@ export function Uploader({ peerObj, peerId }) {
                             let timer = setInterval(() => {
                                 setErrorState("")
                                 clearInterval(timer)
-                            }, 1200)
+                            }, 3000)
                         }
                     }
                 })
@@ -60,7 +60,7 @@ export function Uploader({ peerObj, peerId }) {
                 let timer = setInterval(() => {
                     setErrorState("")
                     clearInterval(timer)
-                }, 1200)
+                }, 3000)
             }
         })
     }
@@ -79,7 +79,7 @@ export function Uploader({ peerObj, peerId }) {
                 let timer = setInterval(() => {
                     setErrorState("")
                     clearInterval(timer)
-                }, 1200)
+                }, 3000)
             }
         })
     }

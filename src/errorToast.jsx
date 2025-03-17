@@ -15,7 +15,7 @@ export function ErrorToast({ error }) {
                 setShowClass("toast-out")
                 setShowing(false)
                 clearInterval(timer)
-            }, 2200)
+            }, 3000)
         }
     }, [error])
 

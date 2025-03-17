@@ -9,39 +9,59 @@ export function Reciever({ peerObj }) {
     const [errorState, setErrorState] = useState("")
 
     useEffect(() => {
+
+        let filesFullfilled = 0
+        let filesExpected = 0
+        let fullfillSet = false
+
+        peerObj.on("disconnected", () => {
+            if (recievedData.length !== filesFullfilled) {
+                setErrorState("Oh no, an error occurred obtaining your files...")
+                console.error("The sending client disconnected prematurely.")
+                let timer = setInterval(() => {
+                    setErrorState("")
+                    clearInterval(timer)
+                }, 3000)
+            }
+        })
+
+        peerObj.on("error", (error) => {
+            setErrorState("Oh no, an error occurred obtaining your files...")
+            console.error(error)
+            let timer = setInterval(() => {
+                setErrorState("")
+                clearInterval(timer)
+            }, 3000)
+        })
+
         peerObj.on("connection", (conn) => {
             conn.on("open", () => {
                 conn.on("data", (data) => {
-                    try {
-                        if (data.purgeFile != null || data.purgeFile != undefined) return
+                    if (data.purgeFile != null || data.purgeFile != undefined) return
 
-                        const file = new File([data.blobData], data.fileName, { type: data.blobData.type })
-                        const fileData = {fileData: file, id: data.id, type: data.type}
-    
-                        setRecievedData((currentFiles) => {
-                            if (currentFiles.some(item => item.id === data.id)) {
-                                return currentFiles
-                            }
-                            return [...currentFiles, fileData]
-                        })
-                        
-                        const con = peerObj.connect(data.from)
-    
-                        con.on("open", () => {
-                            con.send({purgeFile: fileData.id})
-                        })
-                    } catch (error) {
-                        setErrorState("Oh no, an error occurred obtaining your files...")
-                        console.error(error)
-                        let timer = setInterval(() => {
-                            setErrorState("")
-                            clearInterval(timer)
-                        }, 1200)
+                    if (data.expected && fullfillSet == false) {
+                        filesExpected = data.filesExpected
+                        fullfillSet = true
                     }
+
+                    const file = new File([data.blobData], data.fileName, { type: data.blobData.type })
+                    const fileData = {fileData: file, id: data.id, type: data.type}
+
+                    setRecievedData((currentFiles) => {
+                        if (currentFiles.some(item => item.id === data.id)) {
+                            return currentFiles
+                        }
+                        return [...currentFiles, fileData]
+                    })
+                    
+                    const con = peerObj.connect(data.from)
+
+                    con.on("open", () => {
+                        con.send({purgeFile: fileData.id})
+                    })
                 })
             })
         })
-
     }, [peerObj])
 
     return (
@@ -55,6 +75,5 @@ export function Reciever({ peerObj }) {
             </div>
             <ErrorToast error={errorState} />
         </>
-
     )
 }

@@ -17,6 +17,19 @@ export function Recieverid({ peerObj, files, peerId }) {
     }
 
     useEffect(() => {
+        peerObj.on("error", (error) => {
+            setErrorState("Shoot, an error occurred sending your files :/")
+            console.error(error)
+            setSending("Send")
+            setSendingBool(true)
+            setRecieverBox(false)
+            peerObj.disconnect()
+            let timer = setInterval(() => {
+                setErrorState("")
+                clearInterval(timer)
+            }, 3000)
+        })
+
         if (files.length <= 0) {
             setSending("Send")
             setSendingBool(true)
@@ -44,22 +57,9 @@ export function Recieverid({ peerObj, files, peerId }) {
                     let file = fileItem.fileData;
                     const blob = new Blob([file], { type: file.type })
 
-                    const fileFinal = {blobData: blob, fileName: file.name, id: fileItem.id, type: file.type, from: peerId }
+                    const fileFinal = {blobData: blob, fileName: file.name, id: fileItem.id, type: file.type, from: peerId, expected: files.length }
 
-                    try { 
-                        conn.send(fileFinal)
-                    } catch (error) {
-                        setErrorState("Shoot, an error occurred sending your files :/")
-                        console.error(error)
-                        setSending("Send")
-                        setSendingBool(true)
-                        setRecieverBox(false)
-                        peerObj.disconnect()
-                        let timer = setInterval(() => {
-                            setErrorState("")
-                            clearInterval(timer)
-                        }, 1200)
-                    }
+                    conn.send(fileFinal)
                 })
             })
         }
