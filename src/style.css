@@ -135,6 +135,7 @@ body {
     border-radius: 12px;
     transition: 0.12s;
     overflow-y: scroll;
+    cursor: pointer;
 }
 
 .uploader-wrapper:hover {
@@ -387,6 +388,18 @@ form {
     font-family: sans-serif;
     color: rgb(255, 71, 71);
     margin: 12px;
+}
+
+.developer-tag {
+    color: rgb(148, 148, 148);
+}
+
+.devlink {
+    color: white;
+}
+
+.devtag {
+    padding: 12px;
 }
 
 @keyframes toastScale {

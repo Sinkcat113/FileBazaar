@@ -25,6 +25,9 @@ function App() {
         <Uploader peerObj={peer} peerId={peerID} />
         <Reciever peerObj={peer} />
       </div>
+      <div className="devtag">
+        <span><b>FileBazaar</b> | </span> <span className="developer-tag">Developed by <a className="devlink" href="https://www.youtube.com/@sinkcat0113">Sinkcat</a></span>
+      </div>
     </>
   )
 }
