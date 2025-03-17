@@ -13,28 +13,28 @@ export function Uploader({ peerObj, peerId }) {
     const [errorState, setErrorState] = useState("")
 
     useEffect(() => {
-        try {
-            peerObj.on("connection", (conn) => {
-                conn.on("open", () => {
-                    conn.on("data", (data) => {
-                        console.log(data)
-                        if (data.purgeFile) {
+        peerObj.on("connection", (conn) => {
+            conn.on("open", () => {
+                conn.on("data", (data) => {
+                    console.log(data)
+                    if (data.purgeFile) {
+                        try {
                             setFiles(currentFiles => {
                                 return currentFiles.filter(file => file.id !== data.purgeFile)
                             })
                             return []
+                        } catch (error) {
+                            setErrorState("Hrm, an error has occurred removing your files from the list.")
+                            console.error(error)
+                            let timer = setInterval(() => {
+                                setErrorState("")
+                                clearInterval(timer)
+                            }, 1200)
                         }
-                    })
+                    }
                 })
             })
-        } catch (error) {
-            setErrorState("Hrm, an error has occurred removing your files from the list.")
-            console.error(error)
-            let timer = setInterval(() => {
-                setErrorState("")
-                clearInterval(timer)
-            }, 1200)
-        }
+        })
     }, [peerObj])
 
     function openFiles() {
@@ -46,42 +46,42 @@ export function Uploader({ peerObj, peerId }) {
     }
 
     function getDroppedFiles(e) {
-        try {
-            e.preventDefault()
-            const selectedFiles = Array.from(e.dataTransfer.files)
-    
-            selectedFiles.forEach(file => {
+        e.preventDefault()
+        const selectedFiles = Array.from(e.dataTransfer.files)
+
+        selectedFiles.forEach(file => {
+            try {
                 setFiles(currentFiles => {
                     return [...currentFiles, {fileData: file, id: crypto.randomUUID()}]
                 })
-            })
-        } catch (error) {
-            setErrorState("Uh oh, an error occurred getting the dropped files :/")
-            console.error(error)
-            let timer = setInterval(() => {
-                setErrorState("")
-                clearInterval(timer)
-            }, 1200)
-        }
+            } catch (error) {
+                setErrorState("Uh oh, an error occurred getting the dropped files :/")
+                console.error(error)
+                let timer = setInterval(() => {
+                    setErrorState("")
+                    clearInterval(timer)
+                }, 1200)
+            }
+        })
     }
 
     function getFiles(e) {
-        try {
-            const selectedFiles = Array.from(e.target.files)
+        const selectedFiles = Array.from(e.target.files)
 
-            selectedFiles.forEach(file => {
+        selectedFiles.forEach(file => {
+            try {
                 setFiles(currentFiles => {
                     return [...currentFiles, {fileData: file, id: crypto.randomUUID()}]
                 })
-            })
-        } catch (error) {
-            setErrorState("Uh oh, an error occurred getting your files :/")
-            console.error(error)
-            let timer = setInterval(() => {
-                setErrorState("")
-                clearInterval(timer)
-            }, 1200)
-        }
+            } catch (error) {
+                setErrorState("Uh oh, an error occurred getting your files :/")
+                console.error(error)
+                let timer = setInterval(() => {
+                    setErrorState("")
+                    clearInterval(timer)
+                }, 1200)
+            }
+        })
     }
 
     function handleDragOver(e) {

@@ -9,12 +9,12 @@ export function Reciever({ peerObj }) {
     const [errorState, setErrorState] = useState("")
 
     useEffect(() => {
-        try {
-            peerObj.on("connection", (conn) => {
-                conn.on("open", () => {
-                    conn.on("data", (data) => {
+        peerObj.on("connection", (conn) => {
+            conn.on("open", () => {
+                conn.on("data", (data) => {
+                    try {
                         if (data.purgeFile != null || data.purgeFile != undefined) return
-    
+
                         const file = new File([data.blobData], data.fileName, { type: data.blobData.type })
                         const fileData = {fileData: file, id: data.id, type: data.type}
     
@@ -30,17 +30,18 @@ export function Reciever({ peerObj }) {
                         con.on("open", () => {
                             con.send({purgeFile: fileData.id})
                         })
-                    })
+                    } catch (error) {
+                        setErrorState("Oh no, an error occurred obtaining your files...")
+                        console.error(error)
+                        let timer = setInterval(() => {
+                            setErrorState("")
+                            clearInterval(timer)
+                        }, 1200)
+                    }
                 })
             })
-        } catch (error) {
-            setErrorState("Oh no, an error occurred obtaining your files...")
-            console.error(error)
-            let timer = setInterval(() => {
-                setErrorState("")
-                clearInterval(timer)
-            }, 1200)
-        }
+        })
+
     }, [peerObj])
 
     return (

@@ -30,40 +30,39 @@ export function Recieverid({ peerObj, files, peerId }) {
 
 
     function send(e) {
-        try { 
-            e.preventDefault();
-            if (files.length > 0 && recieverID) {
-    
-                let conn = peerObj.connect(recieverID)
-                
-                conn.on("open", () => {
-                    setSending("Sending")
-                    setSendingBool(true)
-                    setRecieverBox(true)
-                    
-                    files.forEach(fileItem => {
-                        let file = fileItem.fileData;
-                        const blob = new Blob([file], { type: file.type })
-    
-                        const fileFinal = {blobData: blob, fileName: file.name, id: fileItem.id, type: file.type, from: peerId }
-    
-                        conn.send(fileFinal)
-                    })
-                })
-            }
-        } catch (error) {
-            setErrorState("Shoot, an error occurred sending your files :/")
-            console.error(error)
-            setSending("Send")
-            setSendingBool(true)
-            setRecieverBox(false)
-            peerObj.disconnect()
-            let timer = setInterval(() => {
-                setErrorState("")
-                clearInterval(timer)
-            }, 1200)
-        }
+        e.preventDefault();
+        if (files.length > 0 && recieverID) {
 
+            let conn = peerObj.connect(recieverID)
+            
+            conn.on("open", () => {
+                setSending("Sending")
+                setSendingBool(true)
+                setRecieverBox(true)
+                
+                files.forEach(fileItem => {
+                    let file = fileItem.fileData;
+                    const blob = new Blob([file], { type: file.type })
+
+                    const fileFinal = {blobData: blob, fileName: file.name, id: fileItem.id, type: file.type, from: peerId }
+
+                    try { 
+                        conn.send(fileFinal)
+                    } catch (error) {
+                        setErrorState("Shoot, an error occurred sending your files :/")
+                        console.error(error)
+                        setSending("Send")
+                        setSendingBool(true)
+                        setRecieverBox(false)
+                        peerObj.disconnect()
+                        let timer = setInterval(() => {
+                            setErrorState("")
+                            clearInterval(timer)
+                        }, 1200)
+                    }
+                })
+            })
+        }
     }
 
     return (
