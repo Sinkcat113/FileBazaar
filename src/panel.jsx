@@ -92,7 +92,7 @@ export function Uploader({ peerObj, peerId }) {
     return (
         <>
             <input className="file-input" type="file" ref={inputRef} onChange={getFiles} multiple={true} />
-            <div className="uploader-wrapper" onDragOver={handleDragOver} onDrop={getDroppedFiles} onClick={() => openFiles()}>
+            <div className="uploader-wrapper" onDragOver={handleDragOver} onDrop={getDroppedFiles}>
                 <div className="top-bar">
                     <Recieverid peerObj={peerObj} peerId={peerId} files={files} />
                     <button className="btn-files" onClick={() => clear()}>Clear Files</button>

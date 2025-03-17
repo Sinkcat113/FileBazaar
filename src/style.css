@@ -135,7 +135,6 @@ body {
     border-radius: 12px;
     transition: 0.12s;
     overflow-y: scroll;
-    cursor: pointer;
 }
 
 .uploader-wrapper:hover {

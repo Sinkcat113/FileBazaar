@@ -45,7 +45,7 @@ export function FileList({ files, recieve }) {
                 <div className="file-list-root">
                     <div className="no-files">
                         <img className="no-files-image" src={fileIcon} alt="" />
-                        <h4 className="no-files-text">Click here, drag n' drop here or click "Choose Files" to select files to send.</h4>
+                        <h4 className="no-files-text">Drag n' drop here or click "Choose Files" to select files to send.</h4>
                     </div>
                 </div>
             )
