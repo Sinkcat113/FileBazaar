@@ -25,7 +25,7 @@ body {
 
 .label-session {
     font-weight: 800;
-    margin-right: 12px;
+    margin-right: 6px;
 }
 
 .id-textbox {
@@ -153,6 +153,8 @@ body {
 
 .top-bar {
     display: flex;
+    gap: 12px;
+    flex-direction: row-reverse;
     justify-content: space-evenly;
     background-color: rgb(21, 21, 21);
     padding: 5px;
@@ -289,7 +291,6 @@ body {
 }
 
 .btn-files {
-    margin-left: 12px;
     transition: 0.12s;
     font-family: sans-serif;
     font-weight: 800;
