@@ -6,8 +6,9 @@ export function Recieverid({ peerObj, files, peerId }) {
 
     const [recieverID, setRecieverID] = useState("")
     const [sending, setSending] = useState("Send")
-    const [sendingBool, setSendingBool] = useState(false)
+    const [sendingBool, setSendingBool] = useState(true)
     const [recieverBox, setRecieverBox] = useState(false)
+    const [isSending, setIsSending] = useState(false)
 
     const [errorState, setErrorState] = useState("")
 
@@ -16,16 +17,6 @@ export function Recieverid({ peerObj, files, peerId }) {
     }
 
     useEffect(() => {
-        if (files.length > 0) {
-            setSending("Send")
-            setSendingBool(false)
-            setRecieverBox(false)
-        } else {
-            setSending("Send")
-            setSendingBool(true)
-            setRecieverBox(false)
-        }
-
         peerObj.on("error", (error) => {
             setSendingBool(false)
             setRecieverBox(false)
@@ -37,18 +28,38 @@ export function Recieverid({ peerObj, files, peerId }) {
                 clearInterval(timer)
             }, 3000)
         })
+
+        if (files.length > 0 && isSending == false) {
+            setSending("Send")
+            setSendingBool(false)
+            setRecieverBox(false)
+        }
     }, [files, peerObj])
 
 
     function send(e) {
         e.preventDefault();
-        
+
         setSending("Sending")
         setSendingBool(true)
         setRecieverBox(true)
+        setIsSending(true)
+
 
         if (files.length > 0 && recieverID) {
             let conn = peerObj.connect(recieverID)
+
+            peerObj.on("connection", (conn) => {
+                conn.on("open", () => {
+                    conn.on("data", (data) => {
+                        if (data.filesSent == data.remainingFiles || files.length == 0) {
+                            setSending("Send")
+                            setRecieverBox(false)
+                            setIsSending(false)
+                        }
+                    })
+                })
+            })
 
             conn.on("open", () => {
                 files.forEach(fileItem => {

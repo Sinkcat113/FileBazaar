@@ -41,7 +41,7 @@ export function Reciever({ peerObj }) {
                     if (data.purgeFile != null || data.purgeFile != undefined) return
 
                     if (data.expected && fullfillSet == false) {
-                        filesExpected = data.filesExpected
+                        filesExpected = data.expected
                         fullfillSet = true
                     }
 
@@ -54,11 +54,12 @@ export function Reciever({ peerObj }) {
                         }
                         return [...currentFiles, fileData]
                     })
+                    filesFullfilled++
                     
                     const con = peerObj.connect(data.from)
 
                     con.on("open", () => {
-                        con.send({purgeFile: fileData.id})
+                        con.send({purgeFile: fileData.id, filesSent: filesFullfilled, remainingFiles: filesExpected})
                     })
                 })
             })

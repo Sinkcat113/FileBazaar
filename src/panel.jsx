@@ -18,7 +18,6 @@ export function Uploader({ peerObj, peerId }) {
         peerObj.on("connection", (conn) => {
             conn.on("open", () => {
                 conn.on("data", (data) => {
-                    console.log(data)
                     if (data.purgeFile) {
                         try {
                             setFiles(currentFiles => {
