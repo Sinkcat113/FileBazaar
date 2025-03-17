@@ -220,6 +220,7 @@ body {
     color: rgb(104, 104, 104);
     background-color: rgb(183, 183, 183);
     border-color: rgb(183, 183, 183);
+    cursor: pointer;
 }
 
 .file-input {
@@ -339,4 +340,68 @@ form {
 
 .btn-download:active {
     background-color: rgb(179, 179, 179);
+}
+
+.bread-root {
+    padding: 30px;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+}
+
+.toast {
+    background-color: rgb(32, 22, 22);
+    padding: 12px;
+    animation-name: toastScale;
+    animation-duration: 0.20s;
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    display: flex;
+    border-radius: 12px;
+    gap: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(255, 97, 97, 0.352);
+    box-shadow: 0px 20px 20px rgba(32, 10, 10, 0.542);
+}
+
+.toast-out {
+    background-color: rgb(255, 73, 73);
+    padding: 12px;
+    animation-name: toastScaleOut;
+    animation-duration: 0.20s;
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    display: flex;
+    gap: 5px;
+}
+
+.image-toast {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.errorMsg {
+    margin: 0;
+    font-family: sans-serif;
+    color: rgb(255, 71, 71);
+    margin: 12px;
+}
+
+@keyframes toastScale {
+    from {
+        scale: 0%;
+    }
+    to {
+        scale: 100%;
+    }
+}
+
+@keyframes toastScaleOut {
+    from {
+        scale: 100%;
+    }
+    to {
+        scale: 0%;
+    }
 }

@@ -2,7 +2,6 @@ import fileIcon from "./assets/fileIcon.png"
 import { FileItem } from "./FileItem"
 
 export function FileList({ files, recieve }) {
-
     if (files.length > 0 || files == null) {
         if (recieve) {
             return (

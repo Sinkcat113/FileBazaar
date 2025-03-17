@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { FileList } from "./FileList";
 import { Recieverid } from "./Recieverid"
+import { ErrorToast } from "./errorToast";
 
 
 export function Uploader({ peerObj, peerId }) {
@@ -9,20 +10,31 @@ export function Uploader({ peerObj, peerId }) {
 
     const [files, setFiles] = useState([]);
 
+    const [errorState, setErrorState] = useState("")
+
     useEffect(() => {
-        peerObj.on("connection", (conn) => {
-            conn.on("open", () => {
-                conn.on("data", (data) => {
-                    console.log(data)
-                    if (data.purgeFile) {
-                        setFiles(currentFiles => {
-                            return currentFiles.filter(file => file.id !== data.purgeFile)
-                        })
-                        return []
-                    }
+        try {
+            peerObj.on("connection", (conn) => {
+                conn.on("open", () => {
+                    conn.on("data", (data) => {
+                        console.log(data)
+                        if (data.purgeFile) {
+                            setFiles(currentFiles => {
+                                return currentFiles.filter(file => file.id !== data.purgeFile)
+                            })
+                            return []
+                        }
+                    })
                 })
             })
-        })
+        } catch (error) {
+            setErrorState("Hrm, an error has occurred removing your files from the list.")
+            console.error(error)
+            let timer = setInterval(() => {
+                setErrorState("")
+                clearInterval(timer)
+            }, 1200)
+        }
     }, [peerObj])
 
     function openFiles() {
@@ -34,24 +46,42 @@ export function Uploader({ peerObj, peerId }) {
     }
 
     function getDroppedFiles(e) {
-        e.preventDefault()
-        const selectedFiles = Array.from(e.dataTransfer.files)
-
-        selectedFiles.forEach(file => {
-            setFiles(currentFiles => {
-                return [...currentFiles, {fileData: file, id: crypto.randomUUID()}]
+        try {
+            e.preventDefault()
+            const selectedFiles = Array.from(e.dataTransfer.files)
+    
+            selectedFiles.forEach(file => {
+                setFiles(currentFiles => {
+                    return [...currentFiles, {fileData: file, id: crypto.randomUUID()}]
+                })
             })
-        })
+        } catch (error) {
+            setErrorState("Uh oh, an error occurred getting the dropped files :/")
+            console.error(error)
+            let timer = setInterval(() => {
+                setErrorState("")
+                clearInterval(timer)
+            }, 1200)
+        }
     }
 
     function getFiles(e) {
-        const selectedFiles = Array.from(e.target.files)
+        try {
+            const selectedFiles = Array.from(e.target.files)
 
-        selectedFiles.forEach(file => {
-            setFiles(currentFiles => {
-                return [...currentFiles, {fileData: file, id: crypto.randomUUID()}]
+            selectedFiles.forEach(file => {
+                setFiles(currentFiles => {
+                    return [...currentFiles, {fileData: file, id: crypto.randomUUID()}]
+                })
             })
-        })
+        } catch (error) {
+            setErrorState("Uh oh, an error occurred getting your files :/")
+            console.error(error)
+            let timer = setInterval(() => {
+                setErrorState("")
+                clearInterval(timer)
+            }, 1200)
+        }
     }
 
     function handleDragOver(e) {
@@ -70,6 +100,7 @@ export function Uploader({ peerObj, peerId }) {
                 </div>
                 <FileList files={files} />
             </div>
+            <ErrorToast error={errorState} />
         </>
     )
 }
