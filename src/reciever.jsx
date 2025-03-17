@@ -26,7 +26,7 @@ export function Reciever({ peerObj }) {
         })
 
         peerObj.on("error", (error) => {
-            setErrorState("Oh no, an error occurred obtaining your files...")
+            setErrorState("Oh no, an error ocurred during file transit")
             console.error(error)
             let timer = setInterval(() => {
                 setErrorState("")
