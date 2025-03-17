@@ -7,15 +7,21 @@ export function Recieverid({ peerObj, files, peerId }) {
     const [recieverID, setRecieverID] = useState("")
     const [sending, setSending] = useState("Send")
     const [sendingBool, setSendingBool] = useState(false)
+    const [recieverBox, setRecieverBox] = useState(false)
 
     function asssignID(e) {
         setRecieverID(e.target.value)
     }
 
     useEffect(() => {
-        if (files.length === 0) {
+        if (files.length <= 0) {
+            setSending("Send")
+            setSendingBool(true)
+            setRecieverBox(false)
+        } else {
             setSending("Send")
             setSendingBool(false)
+            setRecieverBox(false)
         }
     }, [files])
 
@@ -29,6 +35,7 @@ export function Recieverid({ peerObj, files, peerId }) {
             conn.on("open", () => {
                 setSending("Sending")
                 setSendingBool(true)
+                setRecieverBox(true)
                 
                 files.forEach(fileItem => {
                     let file = fileItem.fileData;
@@ -45,7 +52,7 @@ export function Recieverid({ peerObj, files, peerId }) {
     return (
         <>
             <form onSubmit={send}>
-                <input disabled={sendingBool} className="id-textbox-long" id="idTextBox" name="reciever" placeholder="Reciever ID" value={recieverID} type="text" onChange={asssignID} />
+                <input disabled={recieverBox} className="id-textbox-long" id="idTextBox" name="reciever" placeholder="Reciever ID" value={recieverID} type="text" onChange={asssignID} />
                 <button className="btn-send" disabled={sendingBool} >{sending}</button>
             </form>
         </>
