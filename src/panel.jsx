@@ -61,7 +61,7 @@ export function Uploader({ peerObj, peerId }) {
 
     return (
         <>
-            <input className="file-input" type="file" ref={inputRef} multiple={true} />
+            <input className="file-input" type="file" ref={inputRef} onChange={getFiles} multiple={true} />
             <div className="uploader-wrapper" onDragOver={handleDragOver} onDrop={getDroppedFiles}>
                 <div className="top-bar">
                     <Recieverid peerObj={peerObj} peerId={peerId} files={files} />
