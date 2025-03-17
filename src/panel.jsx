@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { FileList } from "./FileList";
 import { Recieverid } from "./Recieverid"
 import { ErrorToast } from "./errorToast";
+import imgRemove from "./assets/removeFiles.png"
+import imgSelection from "./assets/selection.png"
 
 
 export function Uploader({ peerObj, peerId }) {
@@ -94,9 +96,13 @@ export function Uploader({ peerObj, peerId }) {
             <input className="file-input" type="file" ref={inputRef} onChange={getFiles} multiple={true} />
             <div className="uploader-wrapper" onDragOver={handleDragOver} onDrop={getDroppedFiles}>
                 <div className="top-bar">
-                    <Recieverid peerObj={peerObj} peerId={peerId} files={files} />
-                    <button className="btn-files" onClick={() => clear()}>Clear Files</button>
-                    <button className="btn-files" onClick={() => openFiles()}>Choose Files</button>
+                    <div>
+                        <Recieverid peerObj={peerObj} peerId={peerId} files={files} />
+                    </div>
+                    <div className="btn-row">
+                        <button className="btn-files" onClick={() => clear()}><img className="icon-row" src={imgRemove} /></button>
+                        <button className="btn-files" onClick={() => openFiles()}><img className="icon-row" src={imgSelection} /></button>
+                    </div>
                 </div>
                 <FileList files={files} />
             </div>

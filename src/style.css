@@ -155,7 +155,7 @@ body {
     display: flex;
     gap: 12px;
     flex-direction: row-reverse;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: rgb(21, 21, 21);
     padding: 5px;
     padding-left: 7px;
@@ -222,7 +222,7 @@ body {
     color: rgb(104, 104, 104);
     background-color: rgb(183, 183, 183);
     border-color: rgb(183, 183, 183);
-    cursor: pointer;
+    cursor: default;
 }
 
 .file-input {
@@ -290,23 +290,36 @@ body {
     overflow: scroll;
 }
 
+.icon-row {
+    width: 20px;
+    height: 20px;
+    filter: invert();
+    margin-top: 2px;
+}
+
 .btn-files {
     transition: 0.12s;
     font-family: sans-serif;
     font-weight: 800;
-    width: 190px;
     cursor: pointer;
-    border-style: none;
     border-radius: 7px;
-    background-color: white;
+    background-color: rgb(21, 21, 21);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.117);
 }
 
 .btn-files:hover {
-    background-color: rgb(202, 202, 202);
+    background-color: rgb(49, 49, 49);
 }
 
 .btn-files:active {
-    background-color: rgb(162, 162, 162);
+    background-color: rgb(31, 31, 31);
+}
+
+.btn-row {
+    display: flex;
+    gap: 5px;
 }
 
 .file-name {
@@ -316,7 +329,6 @@ body {
 
 .top-bar-header {
     margin: 6.78px;
-    width: 500px;
 }
 
 form {
@@ -324,23 +336,25 @@ form {
 }
 
 .btn-download {
-    background-color: white;
-    padding: 8px;
+    margin-top: 3px;
+    margin-right: 5px;
     border-radius: 8px;
     font-weight: 800;
-    padding-left: 12px;
-    padding-right: 12px;
     cursor: pointer;
     transition: 0.12s;
-    border-style: none;
+    border-radius: 7px;
+    background-color: rgb(21, 21, 21);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.117);
 }
 
 .btn-download:hover {
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(49, 49, 49);
 }
 
 .btn-download:active {
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(31, 31, 31);
 }
 
 .bread-root {

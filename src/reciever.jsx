@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { FileList } from "./FileList";
 import { ErrorToast } from "./errorToast";
+import imgRemove from "./assets/removeFiles.png"
 
 export function Reciever({ peerObj }) {
 
@@ -67,9 +68,9 @@ export function Reciever({ peerObj }) {
     return (
         <>
             <div className="reciever-wrapper">
-                <div className="top-bar-recieve">
+                <div className="top-bar">
+                    <button className="btn-files" onClick={() => {setRecievedData([])}}><img className="icon-row" src={imgRemove} /></button>
                     <h4 className="top-bar-header">Files you've recieved</h4>
-                    <button className="btn-files" onClick={() => {setRecievedData([])}}>Clear Files</button>
                 </div>
                 <FileList files={recievedData} recieve={true} />
             </div>

@@ -1,4 +1,5 @@
 import fileIcon from "./assets/fileListIcon.png"
+import imgDownload from "./assets/arrow.png"
 
 export function FileItem({ fileData, id, downloadable, type }) {
     if (fileData) {
@@ -16,7 +17,7 @@ export function FileItem({ fileData, id, downloadable, type }) {
                     </div>
                     <div className="download-container">
                         <a href={URL.createObjectURL(blob)} download={fileData.name}>
-                            <button className="btn-download">Download</button>
+                            <button className="btn-download"><img className="icon-row" src={imgDownload} /></button>
                         </a>
                     </div>
                 </div>

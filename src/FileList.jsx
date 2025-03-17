@@ -1,6 +1,8 @@
 import fileIcon from "./assets/fileIcon.png"
 import { FileItem } from "./FileItem"
 
+import imgSelect from "./assets/selection.png"
+
 export function FileList({ files, recieve }) {
     if (files.length > 0 || files == null) {
         if (recieve) {
@@ -45,7 +47,7 @@ export function FileList({ files, recieve }) {
                 <div className="file-list-root">
                     <div className="no-files">
                         <img className="no-files-image" src={fileIcon} alt="" />
-                        <h4 className="no-files-text">Drag n' drop here or click "Choose Files" to select files to send.</h4>
+                        <h4 className="no-files-text">Drag n' drop here or click <span><img className="icon-row" src={imgSelect} /></span> to select files to send.</h4>
                     </div>
                 </div>
             )
