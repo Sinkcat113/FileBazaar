@@ -9,13 +9,22 @@ export function Reciever({ peerObj }) {
         peerObj.on("connection", (conn) => {
             conn.on("open", () => {
                 conn.on("data", (data) => {
+                    if (data.purgeFile != null || data.purgeFile != undefined) return
+
                     const file = new File([data.blobData], data.fileName, { type: data.blobData.type })
                     const fileData = {fileData: file, id: data.id, type: data.type}
+
                     setRecievedData((currentFiles) => {
                         if (currentFiles.some(item => item.id === data.id)) {
                             return currentFiles
                         }
                         return [...currentFiles, fileData]
+                    })
+                    
+                    const con = peerObj.connect(data.from)
+
+                    con.on("open", () => {
+                        con.send({purgeFile: fileData.id})
                     })
                 })
             })

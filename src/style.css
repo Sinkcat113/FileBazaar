@@ -70,6 +70,10 @@ body {
     background-color: rgb(31, 31, 31);
 }
 
+.id-textbox-long:disabled {
+    color: gray;
+}
+
 .btn-copy {
     padding: 7px;
     cursor: pointer;
@@ -210,6 +214,12 @@ body {
 
 .btn-send:active {
     background-color: rgb(189, 189, 189);
+}
+
+.btn-send:disabled {
+    color: rgb(104, 104, 104);
+    background-color: rgb(183, 183, 183);
+    border-color: rgb(183, 183, 183);
 }
 
 .file-input {

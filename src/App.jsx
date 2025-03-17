@@ -22,7 +22,7 @@ function App() {
     <>
       <Id peerObj={peer}/>
       <div className="panel-container">
-        <Uploader peerObj={peer} />
+        <Uploader peerObj={peer} peerId={peerID} />
         <Reciever peerObj={peer} />
       </div>
     </>

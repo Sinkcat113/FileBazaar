@@ -3,7 +3,7 @@ import { FileItem } from "./FileItem"
 
 export function FileList({ files, recieve }) {
 
-    if (files.length > 0) {
+    if (files.length > 0 || files == null) {
         if (recieve) {
             return (
                 <div className="file-list-root">
