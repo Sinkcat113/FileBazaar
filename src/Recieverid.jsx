@@ -30,7 +30,7 @@ export function Recieverid({ peerObj, files, peerId }) {
             }, 3000)
         })
 
-        if (files.length <= 0) {
+        if (files.length === 0) {
             setSending("Send")
             setSendingBool(true)
             setRecieverBox(false)
@@ -39,7 +39,7 @@ export function Recieverid({ peerObj, files, peerId }) {
             setSendingBool(false)
             setRecieverBox(false)
         }
-    }, [files])
+    }, [files, peerObj])
 
 
     function send(e) {
