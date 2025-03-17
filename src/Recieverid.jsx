@@ -2,7 +2,6 @@ import { use, useEffect, useState } from "react"
 import { ErrorToast } from "./errorToast"
 
 
-
 export function Recieverid({ peerObj, files, peerId }) {
 
     const [recieverID, setRecieverID] = useState("")
@@ -17,6 +16,16 @@ export function Recieverid({ peerObj, files, peerId }) {
     }
 
     useEffect(() => {
+        if (files.length === 0) {
+            setSending("Send")
+            setSendingBool(true)
+            setRecieverBox(false)
+        } else {
+            setSending("Send")
+            setSendingBool(false)
+            setRecieverBox(false)
+        }
+
         peerObj.on("error", (error) => {
             setErrorState("Shoot, an error occurred sending your files :/")
             console.error(error)
@@ -29,16 +38,6 @@ export function Recieverid({ peerObj, files, peerId }) {
                 clearInterval(timer)
             }, 3000)
         })
-
-        if (files.length === 0) {
-            setSending("Send")
-            setSendingBool(true)
-            setRecieverBox(false)
-        } else {
-            setSending("Send")
-            setSendingBool(false)
-            setRecieverBox(false)
-        }
     }, [files, peerObj])
 
 
