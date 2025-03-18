@@ -14,7 +14,7 @@ export function Recieverid({ peerObj, files, peerId }) {
 
     useEffect(() => {
         peerObj.on("error", (error) => {
-            setSendingBool(false)
+            setIsSending(false)
             setErrorState("Shoot, an error occurred sending your files :/")
             console.error(error)
             peerObj.disconnect()
