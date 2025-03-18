@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "./style.css"
 import Peer from "peerjs";
 
-import { Uploader } from "./panel";
+import { Uploader } from "./Uploader";
 import { Reciever } from "./reciever";
 import { Id } from "./Session";
 

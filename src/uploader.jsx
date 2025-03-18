@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { FileList } from "./FileList";
-import { Recieverid } from "./Recieverid"
+import { Recieverid } from "./Sender"
 import { ErrorToast } from "./errorToast";
 import imgRemove from "./assets/removeFiles.png"
 import imgSelection from "./assets/selection.png"
