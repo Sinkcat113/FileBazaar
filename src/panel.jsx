@@ -27,10 +27,6 @@ export function Uploader({ peerObj, peerId }) {
                         } catch (error) {
                             setErrorState("Hrm, an error has occurred removing your files from the list.")
                             console.error(error)
-                            let timer = setInterval(() => {
-                                setErrorState("")
-                                clearInterval(timer)
-                            }, 3000)
                         }
                     }
                 })
@@ -58,10 +54,6 @@ export function Uploader({ peerObj, peerId }) {
             } catch (error) {
                 setErrorState("Uh oh, an error occurred getting the dropped files :/")
                 console.error(error)
-                let timer = setInterval(() => {
-                    setErrorState("")
-                    clearInterval(timer)
-                }, 3000)
             }
         })
     }
@@ -77,10 +69,6 @@ export function Uploader({ peerObj, peerId }) {
             } catch (error) {
                 setErrorState("Uh oh, an error occurred getting your files :/")
                 console.error(error)
-                let timer = setInterval(() => {
-                    setErrorState("")
-                    clearInterval(timer)
-                }, 3000)
             }
         })
     }

@@ -90,6 +90,7 @@ body {
     border-color: white;
     border-left-style: none;
     background-color: white;
+    content: "Copy";
 }
 
 .btn-copy:hover {
@@ -101,6 +102,9 @@ body {
 }
 
 .btn-copied {
+    animation-name: copySuccess;
+    animation-duration: 0.50s;
+    animation-fill-mode: forwards;
     padding: 7px;
     cursor: pointer;
     transition: 0.12s;
@@ -116,6 +120,7 @@ body {
     background-color: rgb(60, 170, 60);
     border-color: rgb(79, 214, 79);
     color: white;
+    content: "Copied";
 }
 
 .panel-container {

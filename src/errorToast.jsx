@@ -10,12 +10,6 @@ export function ErrorToast({ error }) {
         if (error) {
             setShowing(true)
             setShowClass('toast')
-    
-            let timer = setInterval(() => {
-                setShowClass("toast-out")
-                setShowing(false)
-                clearInterval(timer)
-            }, 3000)
         }
     }, [error])
 

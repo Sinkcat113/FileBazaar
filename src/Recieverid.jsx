@@ -5,11 +5,7 @@ import { ErrorToast } from "./errorToast"
 export function Recieverid({ peerObj, files, peerId }) {
 
     const [recieverID, setRecieverID] = useState("")
-    const [sending, setSending] = useState("Send")
-    const [sendingBool, setSendingBool] = useState(true)
-    const [recieverBox, setRecieverBox] = useState(false)
     const [isSending, setIsSending] = useState(false)
-
     const [errorState, setErrorState] = useState("")
 
     function asssignID(e) {
@@ -19,30 +15,16 @@ export function Recieverid({ peerObj, files, peerId }) {
     useEffect(() => {
         peerObj.on("error", (error) => {
             setSendingBool(false)
-            setRecieverBox(false)
             setErrorState("Shoot, an error occurred sending your files :/")
             console.error(error)
             peerObj.disconnect()
-            let timer = setInterval(() => {
-                setErrorState("")
-                clearInterval(timer)
-            }, 3000)
         })
-
-        if (files.length > 0 && isSending == false) {
-            setSending("Send")
-            setSendingBool(false)
-            setRecieverBox(false)
-        }
     }, [files, peerObj])
 
 
     function send(e) {
         e.preventDefault();
 
-        setSending("Sending")
-        setSendingBool(true)
-        setRecieverBox(true)
         setIsSending(true)
 
 
@@ -53,8 +35,6 @@ export function Recieverid({ peerObj, files, peerId }) {
                 conn.on("open", () => {
                     conn.on("data", (data) => {
                         if (data.filesSent == data.remainingFiles || files.length == 0) {
-                            setSending("Send")
-                            setRecieverBox(false)
                             setIsSending(false)
                         }
                     })
@@ -76,9 +56,9 @@ export function Recieverid({ peerObj, files, peerId }) {
 
     return (
         <>
-            <form onSubmit={send}>
-                <input disabled={recieverBox} className="id-textbox-long" id="idTextBox" name="reciever" placeholder="Reciever ID" value={recieverID} type="text" onChange={asssignID} />
-                <button className="btn-send" disabled={sendingBool} >{sending}</button>
+            <form onSubmit={send} disabled={isSending ? true : false}>
+                <input disabled={isSending ? true : false} className="id-textbox-long" id="idTextBox" name="reciever" placeholder="Reciever ID" value={recieverID} type="text" onChange={asssignID} />
+                <button className="btn-send" disabled={isSending === false && files.length > 0 ? false : true} type="submit">{isSending ? "Sending" : "Send"}</button>
             </form>
             <ErrorToast error={errorState} />
         </>

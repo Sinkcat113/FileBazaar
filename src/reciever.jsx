@@ -19,20 +19,12 @@ export function Reciever({ peerObj }) {
             if (recievedData.length !== filesFullfilled) {
                 setErrorState("Oh no, an error occurred obtaining your files...")
                 console.error("The sending client disconnected prematurely.")
-                let timer = setInterval(() => {
-                    setErrorState("")
-                    clearInterval(timer)
-                }, 3000)
             }
         })
 
         peerObj.on("error", (error) => {
             setErrorState("Oh no, an error ocurred during file transit")
             console.error(error)
-            let timer = setInterval(() => {
-                setErrorState("")
-                clearInterval(timer)
-            }, 3000)
         })
 
         peerObj.on("connection", (conn) => {
