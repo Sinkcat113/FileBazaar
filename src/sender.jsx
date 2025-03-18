@@ -56,7 +56,7 @@ export function Recieverid({ peerObj, files, peerId }) {
 
     return (
         <>
-            <form onSubmit={send} disabled={isSending ? true : false}>
+            <form className="sender-form" onSubmit={send} disabled={isSending ? true : false}>
                 <input disabled={isSending ? true : false} className="id-textbox-long" id="idTextBox" name="reciever" placeholder="Reciever ID" value={recieverID} type="text" onChange={asssignID} />
                 <button className="btn-send" disabled={isSending === false && files.length > 0 ? false : true} type="submit">{isSending ? "Sending" : "Send"}</button>
             </form>

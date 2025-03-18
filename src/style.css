@@ -175,6 +175,7 @@ body {
     left: 0;
     right: 0;
     position: sticky;
+    z-index: 2;
 }
 
 .top-bar-recieve {
@@ -194,6 +195,7 @@ body {
     right: 0;
     position: sticky;
     overflow: hidden;
+    z-index: 2;
 }
 
 
@@ -300,6 +302,8 @@ body {
     height: 20px;
     filter: invert();
     margin-top: 2px;
+    z-index: 1;
+    position: relative;
 }
 
 .btn-files {
@@ -330,13 +334,15 @@ body {
 .file-name {
     margin: 4px;
     color: rgb(255, 255, 255);
+    overflow: hidden;
+    max-width: 400px;
 }
 
 .top-bar-header {
     margin: 6.78px;
 }
 
-form {
+.sender-form {
     display: flex;
 }
 
